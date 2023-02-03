@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.team37.mdpandroid.gui.util.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/squareElement">
+
+    <View
+        android:id="@+id/upLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/black"/>
+
+    <View
+        android:visibility="invisible"
+        android:id="@+id/innerUpLine"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="1dp"
+        android:background="@color/red"/>
+
+    <View
+        android:id="@+id/downLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"/>
+
+    <View
+        android:visibility="invisible"
+        android:id="@+id/innerDownLine"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:background="@color/red"/>
+
+    <View
+        android:id="@+id/leftLine"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@color/black"/>
+
+    <View
+        android:visibility="invisible"
+        android:id="@+id/innerLeftLine"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="1dp"
+        android:background="@color/red"/>
+
+    <View
+        android:id="@+id/rightLine"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@color/black"/>
+
+    <View
+        android:visibility="invisible"
+        android:id="@+id/innerRightLine"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="1dp"
+        android:background="@color/red"/>
+
+    <TextView
+        android:id="@+id/targetImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</com.team37.mdpandroid.gui.util.SquareLayout>

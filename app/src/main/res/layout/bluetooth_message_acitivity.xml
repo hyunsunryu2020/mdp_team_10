@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="#EE4D2D">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Message"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="390dp">
+
+            <Button
+                android:id="@+id/clearButton"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="60dp"
+                android:background="#F2EE4D2D"
+                android:text="Clear"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                fab:iconTint="#F2DD4D2D" />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="60dp"
+                android:background="#F2DD4D2D"
+                android:text="Send"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/messageToSend"
+        android:layout_width="526dp"
+        android:layout_height="252dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/dark_corner_bolder"
+        android:gravity="top"
+        android:hint="     Please input message to send..."
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/messageToReceive"
+        android:layout_width="518dp"
+        android:layout_height="270dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="118dp"
+        android:background="@drawable/dark_corner_bolder"
+        android:gravity="top"
+        android:hint="     Received message will appear here"
+        android:textSize="15sp" />
+
+</RelativeLayout>
