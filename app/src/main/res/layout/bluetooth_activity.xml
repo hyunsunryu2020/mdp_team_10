@@ -14,7 +14,7 @@
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:background="#EE4D2D">
+            android:background="@color/purple_700">
 
             <TextView
                 android:layout_width="wrap_content"

@@ -271,6 +271,7 @@ public class BtConnector extends Activity {
         if (state != STATE_CONNECTED) {
             connectThread = new ConnectThread(lastConnectedDevice);
             connectThread.start();
+            Log.e("BtReconnect", "Trying to reconnect");
         }
     }
 

@@ -29,7 +29,7 @@
             android:layout_marginTop="70dp"
             android:layout_centerHorizontal="true"
             android:numColumns="20"
-            android:background="@drawable/bolder"/>
+            />
 
         <RelativeLayout
             android:layout_marginTop="490dp"
@@ -42,14 +42,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.5"
-                android:background="@color/yellow" />
+                android:background="@color/blue_semi_transparent_pressed" />
 
             <ImageView
                 android:id="@+id/robotIcon"
                 android:layout_width="68dp"
                 android:layout_height="68dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/robot_up"/>
+                android:src="@drawable/robot_up" />
 
         </RelativeLayout>
 
@@ -63,7 +63,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:background="#F2EE4D2D">
+                android:background="@color/purple_700">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="39dp"
                 android:layout_marginBottom="65dp"
-                android:background="#F2DD4D2D"
+                android:background="@color/purple_700"
                 android:text="Generate Test Arena"
                 android:textColor="@color/background"
                 android:textSize="18sp"
@@ -328,7 +328,7 @@
                 android:layout_marginStart="255dp"
                 android:layout_marginEnd="176dp"
                 android:layout_marginBottom="283dp"
-                android:background="#F2EE4D2D"
+                android:background="@color/purple_700"
                 android:text="ADD Obstacle"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -344,7 +344,7 @@
                 android:layout_marginStart="253dp"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="284dp"
-                android:background="#F2EE4D2D"
+                android:background="@color/purple_700"
                 android:text="Clear Arena"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -359,7 +359,7 @@
                 android:layout_marginStart="109dp"
                 android:layout_marginEnd="175dp"
                 android:layout_marginBottom="230dp"
-                android:background="#F2EE4D2D"
+                android:background="@color/purple_700"
                 android:text="Send Arena"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -373,7 +373,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="231dp"
-                android:background="#F2EE4D2D"
+                android:background="@color/purple_700"
                 android:text="Start Task"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -463,7 +463,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="39dp"
                 android:layout_marginBottom="154dp"
-                android:background="#F2DD4D2D"
+                android:background="@color/purple_700"
                 android:text="Send/Receive Message"
                 android:textColor="@color/background"
                 android:textSize="18sp"

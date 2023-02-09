@@ -52,8 +52,11 @@ class BtPage : BasicActivity() {
                     Toast.makeText(this, "Not connected", Toast.LENGTH_SHORT).show()
                     status = "IDLE"
                 }
-                BtConnector.STATE_LISTEN -> Toast.makeText(this, "Not connected", Toast.LENGTH_SHORT).show()
-                BtConnector.STATE_CONNECTING -> Toast.makeText(this, "Connecting", Toast.LENGTH_SHORT).show()
+                BtConnector.STATE_LISTEN -> {Toast.makeText(this, "Trying to Connect", Toast.LENGTH_SHORT).show()
+                    }
+                BtConnector.STATE_CONNECTING -> {Toast.makeText(this, "Connecting", Toast.LENGTH_SHORT).show()
+                }
+
                 BtConnector.STATE_CONNECTED -> {
                     BtDeviceAdapter.connectedDevice!!.connectionPoint!!.setBackgroundResource(R.drawable.green_point)
                     BtDeviceAdapter.connectedDevice!!.connectionStatus!!.setTextColor(Color.parseColor("#4CAF50"))

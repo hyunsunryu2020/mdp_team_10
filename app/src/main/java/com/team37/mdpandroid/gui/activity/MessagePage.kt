@@ -2,6 +2,7 @@ package com.team37.mdpandroid.gui.activity
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
@@ -21,6 +22,7 @@ class MessagePage: BasicActivity() {
     var messageReceived: TextView? = null
     var clearButton: Button? = null
     var sendButton: Button? = null
+    var homeButton: Button? = null
 
     companion object{
 
@@ -60,6 +62,7 @@ class MessagePage: BasicActivity() {
         sendButton = findViewById(R.id.sendButton)
         messageToSend = findViewById(R.id.messageToSend)
         messageReceived = findViewById(R.id.messageToReceive)
+        homeButton = findViewById((R.id.homeButton))
 
         clearButton!!.setOnClickListener{
             messageToSend!!.text.clear()
@@ -67,8 +70,19 @@ class MessagePage: BasicActivity() {
 
         sendButton!!.setOnClickListener{
             btConnector!!.write(messageToSend!!.text.toString())
+            Log.e("BtMessage",messageToSend!!.text.toString())
             messageToSend!!.text.clear()
         }
+
+
+        homeButton!!.setOnClickListener{
+            if (!currentPage.equals(ConfigUtil.MAIN_PAGE)){
+                val intent = Intent(applicationContext, MainPage::class.java)
+                finish()
+                //startActivity(intent)
+            }
+        }
+
     }
 
     private fun initBlueTooth(){

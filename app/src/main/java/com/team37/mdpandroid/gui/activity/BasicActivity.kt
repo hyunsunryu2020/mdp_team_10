@@ -38,6 +38,8 @@ open class BasicActivity : AppCompatActivity(){
                     Log.e("BtStatus", btConnector.state.toString())
                     if (btConnector.wasConnected && (btConnector.state == BtConnector.STATE_LISTEN || btConnector.state == BtConnector.STATE_NONE)) {
                         Thread.sleep(1000)
+                        status = "Trying to Reconnect"
+                        Toast.makeText(context, "Trying to Reconnect", Toast.LENGTH_SHORT).show()
                         btConnector.reconnectToMostRecentDevice()
                     }
                     reconnectionHandler.postDelayed(this, 1000)
@@ -77,7 +79,8 @@ open class BasicActivity : AppCompatActivity(){
     fun checkBtStatus(): Boolean{
         if (btConnector!!.state == BtConnector.STATE_CONNECTED)
             return true
-        Toast.makeText(this, "Bluetooth not connected!", Toast.LENGTH_SHORT).show()
+        if (btConnector!!.state ==BtConnector.STATE_NONE)
+            Toast.makeText(this, "Bluetooth not connected!", Toast.LENGTH_SHORT).show()
         return false
     }
 
