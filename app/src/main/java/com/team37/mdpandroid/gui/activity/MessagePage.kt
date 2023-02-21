@@ -68,6 +68,7 @@ class MessagePage: BasicActivity() {
             messageToSend!!.text.clear()
         }
 
+
         sendButton!!.setOnClickListener{
             btConnector!!.write(messageToSend!!.text.toString())
             Log.e("BtMessage",messageToSend!!.text.toString())

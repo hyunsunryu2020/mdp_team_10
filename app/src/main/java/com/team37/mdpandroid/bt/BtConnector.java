@@ -359,6 +359,7 @@ public class BtConnector extends Activity {
                 outStream.write(bytes);
 
                 String outgoingmessage = new String(bytes);
+
                 Message message = handler.obtainMessage(ConfigUtil.MESSAGE_WRITE);
                 Bundle bundle = new Bundle();
                 bundle.putString(ConfigUtil.MESSAGE_BODY, outgoingmessage);
@@ -368,6 +369,7 @@ public class BtConnector extends Activity {
                  Log.e("ConnectedThread", "Error occurred when sending data", e);
             }
         }
+
 
         public void cancel() {
             try {

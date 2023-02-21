@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.graphics.Color
+import android.graphics.*
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -18,6 +18,7 @@ import com.team37.mdpandroid.gui.data.GridElement
 import com.team37.mdpandroid.gui.data.Obstacle
 import com.team37.mdpandroid.gui.util.ObstacleStatusUtil
 import com.team37.mdpandroid.gui.util.SquareLayout
+import android.view.View
 
 
 class GridAdapter(private val context: Context, private val gridList: List<GridElement>): BaseAdapter() {
@@ -123,7 +124,7 @@ class GridAdapter(private val context: Context, private val gridList: List<GridE
             }).show()
     }
 
-
+    
     @SuppressLint("ResourceAsColor")
     override fun getView(position: Int, view: View?, group: ViewGroup?): View? {
         var holder = ViewHolder()

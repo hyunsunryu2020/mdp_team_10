@@ -33,6 +33,7 @@ class BtPage : BasicActivity() {
     private var switchButton: SwitchButton? = null
     private var deviceName: TextView? = null
     private var refresh: TextView? = null
+    var mainPageButton: Button? = null
     private var refreshProgress: CircularProgressView? = null
 
     private var pairedDevices = mutableListOf<BtDevice>()
@@ -56,6 +57,7 @@ class BtPage : BasicActivity() {
                     }
                 BtConnector.STATE_CONNECTING -> {Toast.makeText(this, "Connecting", Toast.LENGTH_SHORT).show()
                 }
+
 
                 BtConnector.STATE_CONNECTED -> {
                     BtDeviceAdapter.connectedDevice!!.connectionPoint!!.setBackgroundResource(R.drawable.green_point)
@@ -118,8 +120,17 @@ class BtPage : BasicActivity() {
     private fun initView(){
         switchButton = findViewById(R.id.switchButton)
         deviceName = findViewById(R.id.deviceName)
+        mainPageButton = findViewById(R.id.mainPageButton)
         switchButton!!.isChecked = btManager!!.isBluetoothEnabled
         isChecked = switchButton!!.isChecked
+
+        mainPageButton!!.setOnClickListener{
+            if (!currentPage.equals(ConfigUtil.MAIN_PAGE)){
+                val intent = Intent(applicationContext, MainPage::class.java)
+                finish()
+                //startActivity(intent)
+            }}
+
         switchButton!!.setOnClickListener{
             if (isChecked) {
                 btManager!!.turnOff()

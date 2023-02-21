@@ -35,6 +35,7 @@ public class BtManager {
     BtConnector mBtConnector;
 
     private ArrayAdapter<String> adapterNearbyDevices;
+    private ArrayAdapter<String> mConversationArrayAdapter;
 
     private static volatile BtManager btManager;
 

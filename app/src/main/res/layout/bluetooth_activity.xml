@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto">
+    android:background="#00FFFFFF">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,6 +27,13 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/mainPageButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="#16FFFFFF"
+                android:foreground="@drawable/home" />
+
 
         </RelativeLayout>
 
@@ -34,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -46,7 +56,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -55,18 +65,18 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
+                        android:id="@+id/switchPart"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
-                        android:id="@+id/switchPart">
+                        android:layout_marginTop="50dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
+                            android:layout_centerVertical="true"
                             android:text="Bluetooth"
                             android:textColor="@color/black"
-                            android:layout_centerVertical="true"/>
+                            android:textSize="18sp" />
 
                         <com.suke.widget.SwitchButton
                             android:id="@+id/switchButton"
@@ -85,48 +95,48 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
+                            android:text="DeviceName"
                             android:textColor="@color/black"
-                            android:text="DeviceName"/>
+                            android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/deviceName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:textColor="@color/green"
+                            android:layout_alignParentRight="true"
                             android:text=""
-                            android:layout_alignParentRight="true"/>
+                            android:textColor="@color/green"
+                            android:textSize="18sp" />
 
                     </RelativeLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/grey"
                         android:layout_marginTop="30dp"
-                        android:alpha="0.5"/>
+                        android:alpha="0.5"
+                        android:background="@color/grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:layout_marginTop="20dp"
                         android:text="Paired Devices"
-                        android:textStyle="bold"
                         android:textColor="@color/grey"
-                        android:layout_marginTop="20dp"/>
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/pairedDeviceList"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/grey"
                         android:layout_marginTop="30dp"
-                        android:alpha="0.5"/>
+                        android:alpha="0.5"
+                        android:background="@color/grey" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -135,11 +145,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:layout_marginTop="20dp"
                             android:text="Available Devices"
-                            android:textStyle="bold"
                             android:textColor="@color/grey"
-                            android:layout_marginTop="20dp"/>
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/refresh"
@@ -152,19 +162,18 @@
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
-                        <com.github.rahatarmanahmed.cpv.CircularProgressView
-                            android:visibility="gone"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_alignParentRight="true"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <com.github.rahatarmanahmed.cpv.CircularProgressView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/refreshProgress"
                             android:layout_width="20dp"
-                            app:cpv_thickness="3dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:visibility="gone"
                             app:cpv_animDuration="3000"
                             app:cpv_color="@color/grey"
-                            android:layout_height="20dp"
-                            app:cpv_indeterminate="true" />
+                            app:cpv_indeterminate="true"
+                            app:cpv_thickness="3dp" />
 
                     </RelativeLayout>
 
@@ -172,7 +181,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/availableDeviceList"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 
@@ -180,7 +189,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
 
             </LinearLayout>
