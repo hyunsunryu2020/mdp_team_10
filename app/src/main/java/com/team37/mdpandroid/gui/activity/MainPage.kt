@@ -90,8 +90,8 @@ class MainPage : BasicActivity() {
             }
             ConfigUtil.MESSAGE_READ -> {
                 val string = msg.data.getString(ConfigUtil.MESSAGE_BODY)!!
-                Log.e("JSONString", string)
-                val msgData = JSONObject(string)
+                msg.data.getString(ConfigUtil.MESSAGE_BODY)?.let { Log.e("hello", it)}
+                //val msgData = JSONObject(string)
                 val arrOfmsg = string.split(",").toTypedArray()
                 val header = arrOfmsg[0]
                 Log.e("header",arrOfmsg[0])
@@ -101,8 +101,8 @@ class MainPage : BasicActivity() {
                         val imageId = arrOfmsg[2]
                         val obstacleId = arrOfmsg[1]
                         val holder = GridAdapter.obstacles[Integer.parseInt(obstacleId)]
-                        holder!!.image!!.text =
-                            ObstacleStatusUtil.obstacles[Integer.parseInt(imageId)]
+                        holder!!.number = Integer.parseInt(imageId)
+                        holder!!.image!!.text = holder!!.number.toString()
                         holder!!.image!!.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                         holder!!.image!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                     }
@@ -170,75 +170,75 @@ class MainPage : BasicActivity() {
                             }
                         }
                     }
-                    "POS" -> {
-                        algoPath.clear()
-                        val obstaclePaths = (msgData["body"] as String).split("\n")
-                        var tempPath = ""
-                        for (paths: String in obstaclePaths) {
-                            if (paths.equals(""))
-                                continue
-                            val route = paths.split("],[")
-                            tempPath = ""
-                            for (path: String in route) {
-                                tempPath = path
-                                var position = tempPath.indexOf("[")
-                                if (position != -1) {
-                                    tempPath = tempPath.substring(1, tempPath.length)
-                                }
-                                position = tempPath.indexOf("]")
-                                if (position != -1) {
-                                    tempPath = tempPath.substring(0, tempPath.length - 1)
-                                }
-                                algoPath.add(tempPath)
-                            }
-                            val position = tempPath.split(",")
-                            findObstacleId(
-                                Integer.parseInt(position[0]),
-                                Integer.parseInt(position[1]),
-                                position[2]
-                            )
-                        }
-                        finalPosition = tempPath
-                        algoPath.removeAt(0)
-                        combineStraightLine()
-                        statusText!!.text =
-                            "Moving to position (" + (Integer.parseInt(algoPath[0].split(",")[0]) + 1).toString() + "," + (Integer.parseInt(
-                                algoPath[0].split(",")[1]
-                            ) + 1).toString() + ")"
-                        statusText!!.setTextColor(Color.BLUE)
-                    }
-                    "IMAGE_ID" -> {
-                        val imageId = msgData["body"] as String
-                        val holder = obstaclesQueue[0]
-                        if (!imageId.contains("No Detection")) {
-                            Log.e("ImageDetected", "Image detected")
-                            holder!!.image!!.text = imageId
-                            holder!!.image!!.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                            holder!!.image!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                        }
-                        obstaclesQueue.removeAt(0)
-                        if (obstaclesQueue.size == 0) {
-                            Log.e("Path", finalPosition)
-                            val info = finalPosition.split(",")
-                            val x: Int = ((Integer.parseInt(info[0]) - 1) * 33 + 68).toInt()
-                            var y: Int = (655 - (Integer.parseInt(info[1]) - 1) * 33).toInt()
-                            val lp = robotLayout!!.getLayoutParams() as RelativeLayout.LayoutParams
-                            lp.leftMargin = x
-                            lp.topMargin = y
-                            robotLayout!!.layoutParams = lp
-                            when (info[2]) {
-                                "N" -> robotIcon!!.setImageResource(R.drawable.robot_up)
-                                "E" -> robotIcon!!.setImageResource(R.drawable.robot_right)
-                                "S" -> robotIcon!!.setImageResource(R.drawable.robot_down)
-                                "W" -> robotIcon!!.setImageResource(R.drawable.robot_left)
-                                else -> {}
-                            }
-                            statusText!!.text = "Complete!"
-                            statusText!!.setTextColor(Color.GREEN)
-                            start!!.text = "START"
-                            started = false
-                        }
-                    }
+//                    "POS" -> {
+//                        algoPath.clear()
+//                        val obstaclePaths = (msgData["body"] as String).split("\n")
+//                        var tempPath = ""
+//                        for (paths: String in obstaclePaths) {
+//                            if (paths.equals(""))
+//                                continue
+//                            val route = paths.split("],[")
+//                            tempPath = ""
+//                            for (path: String in route) {
+//                                tempPath = path
+//                                var position = tempPath.indexOf("[")
+//                                if (position != -1) {
+//                                    tempPath = tempPath.substring(1, tempPath.length)
+//                                }
+//                                position = tempPath.indexOf("]")
+//                                if (position != -1) {
+//                                    tempPath = tempPath.substring(0, tempPath.length - 1)
+//                                }
+//                                algoPath.add(tempPath)
+//                            }
+//                            val position = tempPath.split(",")
+//                            findObstacleId(
+//                                Integer.parseInt(position[0]),
+//                                Integer.parseInt(position[1]),
+//                                position[2]
+//                            )
+//                        }
+//                        finalPosition = tempPath
+//                        algoPath.removeAt(0)
+//                        combineStraightLine()
+//                        statusText!!.text =
+//                            "Moving to position (" + (Integer.parseInt(algoPath[0].split(",")[0]) + 1).toString() + "," + (Integer.parseInt(
+//                                algoPath[0].split(",")[1]
+//                            ) + 1).toString() + ")"
+//                        statusText!!.setTextColor(Color.BLUE)
+//                    }
+//                    "IMAGE_ID" -> {
+//                        val imageId = msgData["body"] as String
+//                        val holder = obstaclesQueue[0]
+//                        if (!imageId.contains("No Detection")) {
+//                            Log.e("ImageDetected", "Image detected")
+//                            holder!!.image!!.text = imageId
+//                            holder!!.image!!.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+//                            holder!!.image!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
+//                        }
+//                        obstaclesQueue.removeAt(0)
+//                        if (obstaclesQueue.size == 0) {
+//                            Log.e("Path", finalPosition)
+//                            val info = finalPosition.split(",")
+//                            val x: Int = ((Integer.parseInt(info[0]) - 1) * 33 + 68).toInt()
+//                            var y: Int = (655 - (Integer.parseInt(info[1]) - 1) * 33).toInt()
+//                            val lp = robotLayout!!.getLayoutParams() as RelativeLayout.LayoutParams
+//                            lp.leftMargin = x
+//                            lp.topMargin = y
+//                            robotLayout!!.layoutParams = lp
+//                            when (info[2]) {
+//                                "N" -> robotIcon!!.setImageResource(R.drawable.robot_up)
+//                                "E" -> robotIcon!!.setImageResource(R.drawable.robot_right)
+//                                "S" -> robotIcon!!.setImageResource(R.drawable.robot_down)
+//                                "W" -> robotIcon!!.setImageResource(R.drawable.robot_left)
+//                                else -> {}
+//                            }
+//                            statusText!!.text = "Complete!"
+//                            statusText!!.setTextColor(Color.GREEN)
+//                            start!!.text = "START"
+//                            started = false
+//                        }
+//                    }
                 }
             }
             ConfigUtil.MESSAGE_WRITE -> {}
@@ -260,17 +260,13 @@ class MainPage : BasicActivity() {
         setContentView(R.layout.main_page_activity)
         currentPage = ConfigUtil.MAIN_PAGE
         initView()
-//        initBlueTooth()
+        initBlueTooth()
 //        initFloatingButtons(this)
-        btConnector.setHandler(handler)
         val lp = robotLayout!!.getLayoutParams() as RelativeLayout.LayoutParams
         lp.leftMargin = 68
         lp.topMargin = 655
         robotLayout!!.layoutParams = lp
-        var count=0f
 
-        /*robotView = findViewById(R.id.robotView)*/
-        /*canvasFigure = findViewById(R.id.robotIcon)*/
 
 
     }
@@ -309,6 +305,7 @@ class MainPage : BasicActivity() {
         super.onResume()
         loadObstacles()
         statusText!!.text = status
+        initBlueTooth()
     }
 
     private fun initView(): Unit {
@@ -469,10 +466,8 @@ class MainPage : BasicActivity() {
             if (checkBtStatus()) {
                 statusText!!.setText("Going Backward")
                 btConnector!!.write("b")
+                direction="S"
                 moveForward(direction)
-
-
-
             }
         }
 
@@ -538,10 +533,25 @@ class MainPage : BasicActivity() {
                 val list = mutableListOf<String>()
                 var string: String = ""
                 for (item: GridAdapter.ViewHolder in GridAdapter.obstacles.values) {
-                    string =
-                        "[" + item.number + "," + item.x + "," + item.y + "," + ObstacleStatusUtil.adjustDirection(
-                            item.direction!!
-                        ) + "]"
+                    var tmpx = item.x * 10 - 5
+                    var tmpy = item.y * 10 - 5
+                    var tmpdirection = ObstacleStatusUtil.adjustDirection(
+                        item.direction!!
+                    )
+                    var tmpdegree = 0
+                    if (tmpdirection == "N") {
+                        tmpdegree = 90
+                    }
+                    else if (tmpdirection == "S") {
+                        tmpdegree = -90
+                    }
+                    else if (tmpdirection == "E") {
+                        tmpdegree = 0
+                    }
+                    else if (tmpdirection == "W") {
+                        tmpdegree = 180
+                    }
+                    string = "[" + tmpx + "," + tmpy + "," + tmpdegree + "," + item.number + "]"
                     list.add(string)
                 }
                 string = ""
