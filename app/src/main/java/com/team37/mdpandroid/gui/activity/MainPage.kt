@@ -73,7 +73,6 @@ class MainPage : BasicActivity() {
     private var speechRecognizer: SpeechRecognizer? = null
 
     private var started = false
-    /*private var canvasFigure= CanvasFigureDraw(this)*///
 
 
     private val obstaclesQueue = mutableListOf<GridAdapter.ViewHolder>()
