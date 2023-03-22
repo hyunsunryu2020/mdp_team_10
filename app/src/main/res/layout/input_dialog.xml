@@ -5,25 +5,27 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/xName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="X" />
 
         <EditText
-            android:numeric="integer"
             android:id="@+id/xInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"
-            android:ems="2">
+            android:ems="2"
+            android:fontFamily="@font/poppins_semibold"
+            android:numeric="integer">
 
             <requestFocus />
         </EditText>
@@ -33,16 +35,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Y" />
 
         <EditText
-            android:numeric="integer"
             android:id="@+id/yInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"
-            android:ems="2" />
+            android:ems="2"
+            android:fontFamily="@font/poppins_semibold"
+            android:numeric="integer" />
 
     </LinearLayout>
 

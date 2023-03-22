@@ -3,24 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainPageDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gui.activity.MainPage"
-    android:id="@+id/mainPageDrawerLayout">
+    android:background="#DBDCF8"
+    tools:context=".gui.activity.MainPage">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <GridView-->
-<!--            android:id="@+id/gridView"-->
-<!--            android:layout_width="420dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="70dp"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:columnWidth="3dp"-->
-<!--            android:numColumns="15"-->
-<!--            android:background="@drawable/bolder"/>-->
+        <!--        <GridView-->
+        <!--            android:id="@+id/gridView"-->
+        <!--            android:layout_width="420dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="70dp"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            android:columnWidth="3dp"-->
+        <!--            android:numColumns="15"-->
+        <!--            android:background="@drawable/bolder"/>-->
 
         <View
             android:id="@+id/robotView"
@@ -31,17 +32,16 @@
             android:id="@+id/gridView"
             android:layout_width="496dp"
             android:layout_height="496dp"
-            android:layout_marginTop="70dp"
             android:layout_centerHorizontal="true"
-            android:numColumns="20"
-            />
+            android:layout_marginTop="70dp"
+            android:numColumns="20" />
 
         <RelativeLayout
-            android:layout_marginTop="490dp"
-            android:layout_marginLeft="54dp"
             android:id="@+id/robotLayout"
             android:layout_width="75dp"
-            android:layout_height="75dp">
+            android:layout_height="75dp"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="490dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -60,24 +60,33 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#20FFFFFF">
+            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:background="@color/purple_700">
+                android:background="@drawable/top_background"
+                android:outlineAmbientShadowColor="@color/purple_200">
 
                 <TextView
+                    android:id="@+id/title_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
-                    android:text="Group10"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="199dp"
+                    android:layout_marginEnd="181dp"
+                    android:layout_marginBottom="7dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Group 10"
+                    android:textAlignment="center"
+                    android:textColor="#474FE4"
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/blueToothConnection"
@@ -85,27 +94,13 @@
                     android:layout_height="37dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="#00FFFFFF"
-                    android:foreground="@drawable/bt_icon"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#00673AB7"
+                    android:foreground="@drawable/bluetooth_2"
                     android:foregroundGravity="right|fill" />
 
             </RelativeLayout>
-
-            <Button
-                android:id="@+id/testArena"
-                android:layout_width="236dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="39dp"
-                android:layout_marginBottom="65dp"
-                android:background="@color/purple_700"
-                android:text="Generate Test Arena"
-                android:textColor="@color/background"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -119,6 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:text="1"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -128,6 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="2"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -137,6 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="3"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -146,6 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="4"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -155,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="5"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -162,8 +162,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
+                    android:layout_marginLeft="16dp"
                     android:text="6"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -173,6 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="7"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -180,8 +182,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
+                    android:layout_marginLeft="16dp"
                     android:text="8"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -191,6 +194,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="9"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="10"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -199,7 +213,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="13dp"
-                    android:text="10"
+                    android:text="11"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:text="12"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:text="13"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -208,34 +243,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="11"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="12"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="13"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="14"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -243,8 +252,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="9dp"
                     android:text="15"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -252,8 +262,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="9dp"
                     android:text="16"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -261,8 +272,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="9dp"
                     android:text="17"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -270,8 +282,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="9dp"
                     android:text="18"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -279,8 +292,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="9dp"
                     android:text="19"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -288,8 +302,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="9dp"
                     android:text="20"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -309,8 +324,9 @@
                     android:id="@+id/statusTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="Current status"
-                    android:textColor="@color/grey"
+                    android:textColor="#474FE4"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -319,6 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="IDLE"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -326,16 +343,18 @@
 
             <Button
                 android:id="@+id/addArena"
-                android:layout_width="140dp"
+                android:layout_width="142dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="255dp"
+                android:layout_marginStart="88dp"
                 android:layout_marginEnd="176dp"
                 android:layout_marginBottom="283dp"
-                android:background="@color/purple_700"
-                android:text="ADD Obstacle"
-                android:textColor="@color/white"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Add Obstacle"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:windowSoftInputMode="adjustPan" />
@@ -349,9 +368,11 @@
                 android:layout_marginStart="253dp"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="284dp"
-                android:background="@color/purple_700"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Clear Arena"
-                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -364,9 +385,11 @@
                 android:layout_marginStart="109dp"
                 android:layout_marginEnd="175dp"
                 android:layout_marginBottom="230dp"
-                android:background="@color/purple_700"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Send Arena"
-                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -378,18 +401,56 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="231dp"
-                android:background="@color/purple_700"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Start Task"
-                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/sendAndReceive"
+                android:layout_width="142dp"
+                android:layout_height="38dp"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="164dp"
+                android:layout_marginEnd="175dp"
+                android:layout_marginBottom="177dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Message"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
+
+            <Button
+                android:id="@+id/speechButton"
+                android:layout_width="140dp"
+                android:layout_height="38dp"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="322dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="175dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Speech"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="226dp"
-                android:layout_height="172dp"
+                android:layout_height="115dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="70dp"
+                android:layout_marginEnd="41dp"
                 android:layout_marginBottom="25dp">
 
                 <LinearLayout
@@ -460,270 +521,276 @@
 
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/sendAndReceive"
-                android:layout_width="236dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="39dp"
-                android:layout_marginBottom="154dp"
-                android:background="@color/purple_700"
-                android:text="Send/Receive Message"
-                android:textColor="@color/background"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="28dp"
-            android:orientation="vertical"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="70dp"
+            android:orientation="vertical">
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textSize="15sp"
+                android:gravity="center_vertical"
                 android:text="20"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
                 android:text="19"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
                 android:text="18"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:text="17"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:text="16"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:text="15"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:text="14"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:text="13"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:text="12"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_vertical"
                 android:text="11"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
                 android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
                 android:text="10"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="9"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="8"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="7"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="6"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="5"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="4"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="3"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="2"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
                 android:text="1"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
         <!--        <RelativeLayout-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="120dp"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginStart="40dp"-->
-<!--            android:layout_marginBottom="100dp">-->
+        <!--            android:layout_width="120dp"-->
+        <!--            android:layout_height="120dp"-->
+        <!--            android:layout_alignParentBottom="true"-->
+        <!--            android:layout_marginStart="40dp"-->
+        <!--            android:layout_marginBottom="100dp">-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/moveForward"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:src="@drawable/move_forward" />-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/moveForward"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_centerHorizontal="true"-->
+        <!--                android:src="@drawable/move_forward" />-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/turnLeft"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:src="@drawable/turn_left"-->
-<!--                android:layout_centerVertical="true"/>-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/turnLeft"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/turn_left"-->
+        <!--                android:layout_centerVertical="true"/>-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/turnRight"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:src="@drawable/turn_right"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:layout_alignParentEnd="true"/>-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/turnRight"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/turn_right"-->
+        <!--                android:layout_centerVertical="true"-->
+        <!--                android:layout_alignParentEnd="true"/>-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/moveBackward"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:src="@drawable/move_back"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_alignParentBottom="true"/>-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/moveBackward"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/move_back"-->
+        <!--                android:layout_centerHorizontal="true"-->
+        <!--                android:layout_alignParentBottom="true"/>-->
 
-<!--        </RelativeLayout>-->
+        <!--        </RelativeLayout>-->
 
 
     </RelativeLayout>
@@ -739,7 +806,7 @@
             android:id="@+id/obstacleRecyclerView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 

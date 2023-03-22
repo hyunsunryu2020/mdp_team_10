@@ -5,6 +5,7 @@ object ConfigUtil {
     const val BT_CONNECTION_PAGE = 1
     const val BT_MESSAGE_PAGE = 2
     const val MAIN_PAGE = 3
+    const val SPLASH_PAGE = 4
 
     const val FINE_LOCATION = 113
     const val BACKGROUND_LOCATION = 114

@@ -5,26 +5,29 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
+import android.provider.MediaStore.Audio.Radio
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.*
-import android.widget.BaseAdapter
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import com.team37.mdpandroid.R
 import com.team37.mdpandroid.gui.data.GridElement
 import com.team37.mdpandroid.gui.data.Obstacle
 import com.team37.mdpandroid.gui.util.ObstacleStatusUtil
 import com.team37.mdpandroid.gui.util.SquareLayout
 import android.view.View
+import android.widget.*
 
 
 class GridAdapter(private val context: Context, private val gridList: List<GridElement>): BaseAdapter() {
     val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     val holders = mutableMapOf<Int, ViewHolder>()
 
+    private var upButton: RadioButton?=null
+    private var downButton: RadioButton?=null
+    private var leftButton: RadioButton?=null
+    private var rightButton: RadioButton?=null
     companion object{
         private val directions = arrayOf("Up", "Right", "Down", "Left")
         private var nums = mutableListOf<Boolean>(false, false, false, false, false, false, false, false)
@@ -32,7 +35,7 @@ class GridAdapter(private val context: Context, private val gridList: List<GridE
         fun clearObstacle(holder: ViewHolder){
             clearLines(holder)
             holder.image!!.text = ""
-            holder.square!!.setBackgroundColor(Color.WHITE)
+            holder.square!!.setBackgroundColor(Color.parseColor("#DBDCF8"))
             nums[holder.number-1] = false
             holder.number = 0
         }
@@ -96,35 +99,65 @@ class GridAdapter(private val context: Context, private val gridList: List<GridE
     }
 
     fun addObstacle(holder: ViewHolder){
-        val dialog = AlertDialog.Builder(context)
-            .setTitle("Please select obstacle direction")
-            .setItems(directions,DialogInterface.OnClickListener(){
-                    dialogInterface: DialogInterface, i: Int ->
-                run {
-
-                    when (i) {
-                        0 -> {
-                            addObstacleWithDirection(holder, ObstacleStatusUtil.up)
-                        }
-                        1 -> {
-                            addObstacleWithDirection(holder, ObstacleStatusUtil.right)
-                        }
-                        2 -> {
-                            addObstacleWithDirection(holder, ObstacleStatusUtil.down)
-                        }
-                        3 -> {
-                            addObstacleWithDirection(holder, ObstacleStatusUtil.left)
-                        }
-                        else -> {}
-
-                        }
-                    }
-//                                SendMessageUtil.setObstacleWithDirection(gridList[position].coordinateX, gridList[position].coordinateY,
-//                                    holder.number, holder.direction!!)
-            }).show()
+        obstacleDirectionDialog(holder)
+//        val dialog = AlertDialog.Builder(context)
+//            .setTitle("Please select obstacle direction")
+//            .setItems(directions,DialogInterface.OnClickListener(){
+//                    dialogInterface: DialogInterface, i: Int ->
+//                run {
+//
+//                    when (i) {
+//                        0 -> {
+//                            addObstacleWithDirection(holder, ObstacleStatusUtil.up)
+//                        }
+//                        1 -> {
+//                            addObstacleWithDirection(holder, ObstacleStatusUtil.right)
+//                        }
+//                        2 -> {
+//                            addObstacleWithDirection(holder, ObstacleStatusUtil.down)
+//                        }
+//                        3 -> {
+//                            addObstacleWithDirection(holder, ObstacleStatusUtil.left)
+//                        }
+//                        else -> {}
+//
+//                        }
+//                    }
+////                                SendMessageUtil.setObstacleWithDirection(gridList[position].coordinateX, gridList[position].coordinateY,
+////                                    holder.number, holder.direction!!)
+//            }).show()
     }
 
-    
+    private fun obstacleDirectionDialog(holder: ViewHolder){
+        val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+        val customView= LayoutInflater.from(context).inflate(R.layout.obstacle_direction_dialog,null)
+        builder.setView(customView)
+        val dialog=builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val upButton= customView.findViewById<RadioButton>(R.id.upButton)
+        val downButton=customView.findViewById<RadioButton>(R.id.downButton)
+        val leftButton=customView.findViewById<RadioButton>(R.id.leftButton)
+        val rightButton=customView.findViewById<RadioButton>(R.id.rightButton)
+        upButton.setOnClickListener{
+            addObstacleWithDirection(holder, ObstacleStatusUtil.up)
+            dialog.dismiss()
+        }
+        downButton.setOnClickListener{
+            addObstacleWithDirection(holder, ObstacleStatusUtil.down)
+            dialog.dismiss()
+        }
+        leftButton.setOnClickListener{
+            addObstacleWithDirection(holder, ObstacleStatusUtil.left)
+            dialog.dismiss()
+        }
+        rightButton.setOnClickListener{
+            addObstacleWithDirection(holder, ObstacleStatusUtil.right)
+            dialog.dismiss()
+        }
+
+
+        dialog.show()
+    }
     @SuppressLint("ResourceAsColor")
     override fun getView(position: Int, view: View?, group: ViewGroup?): View? {
         var holder = ViewHolder()

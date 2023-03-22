@@ -20,11 +20,4 @@ class ObstacleManager private constructor() {
         }
     }
 
-//    fun generateNewObstacle(direction: Int, image: Int): Obstacle{
-//        return Obstacle(direction, image)
-//    }
-
-//    fun generateNewObstacleByInput(): Obstacle{
-//
-//    }
 }

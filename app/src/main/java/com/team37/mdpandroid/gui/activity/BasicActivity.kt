@@ -27,6 +27,7 @@ open class BasicActivity : AppCompatActivity(){
         private val activities: MutableList<Activity> = ArrayList()
         var currentPage = ConfigUtil.MAIN_PAGE
         var status = "IDLE"
+
         private var hasReconnQueued = false
         private var context: Context? = null
 
@@ -108,31 +109,5 @@ open class BasicActivity : AppCompatActivity(){
             finish()
     }
 
-//    fun initFloatingButtons(context: Context) {
-////        val btPage: FloatingActionButton = findViewById(R.id.blueToothConnection)
-////        btPage.setOnClickListener {
-////            if (!currentPage.equals(ConfigUtil.BT_CONNECTION_PAGE)){
-////                val intent = Intent(context, BtPage::class.java)
-//////                finish()
-////                startActivity(intent)
-////            }
-////        }
-//        val homePage: FloatingActionButton = findViewById(R.id.mainPageButton)
-//        homePage.setOnClickListener {
-//            if (!currentPage.equals(ConfigUtil.MAIN_PAGE)) {
-//                val intent = Intent(context, MainPage::class.java)
-////                finish()
-//                startActivity(intent)
-//            }
-//        }
-//        val messagePage: FloatingActionButton = findViewById(R.id.blueToothMessage)
-//        messagePage.setOnClickListener {
-//            if (!currentPage.equals(ConfigUtil.BT_MESSAGE_PAGE)) {
-//                val intent = Intent(context, MessagePage::class.java)
-////                finish()
-//                startActivity(intent)
-//            }
-//        }
-//    }
 
 }

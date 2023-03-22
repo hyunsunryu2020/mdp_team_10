@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DBDCF8">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,40 +15,36 @@
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:background="@color/purple_700">
+            android:background="@drawable/top_background">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Message"
-                android:textColor="@color/white"
+                android:textColor="#474FE4"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/homeButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentEnd="true"
-                android:background="#16FFFFFF"
-                android:foreground="@drawable/home" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="390dp">
+            android:layout_marginTop="390dp"
+            android:translationY="-120dp">
 
             <Button
                 android:id="@+id/clearButton"
                 android:layout_width="130dp"
                 android:layout_height="60dp"
-                android:layout_marginLeft="60dp"
-                android:background="@color/purple_700"
+                android:layout_marginLeft="90dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Clear"
-                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -56,10 +53,12 @@
                 android:layout_width="130dp"
                 android:layout_height="60dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="60dp"
-                android:background="@color/purple_700"
+                android:layout_marginEnd="90dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Send"
-                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textColor="#474FE4"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -69,29 +68,40 @@
 
     <EditText
         android:id="@+id/messageToSend"
-        android:layout_width="526dp"
-        android:layout_height="252dp"
+        android:layout_width="480dp"
+        android:layout_height="152dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="110dp"
         android:background="@drawable/dark_corner_bolder"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="top"
         android:hint="     Please input message to send..."
         android:textAlignment="viewStart"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:translationY="-20dp" />
 
 
     <TextView
         android:id="@+id/messageToReceive"
-        android:layout_width="518dp"
-        android:layout_height="270dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="480dp"
+        android:layout_height="152dp"
+        android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="118dp"
         android:background="@drawable/dark_corner_bolder"
         android:elegantTextHeight="false"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="top"
         android:hint="     Received message will appear here"
         android:textAlignment="viewStart"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:translationY="350dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotationX="180"
+        android:translationY="550dp"
+        fab:srcCompat="@drawable/top_background2" />
 
 </RelativeLayout>

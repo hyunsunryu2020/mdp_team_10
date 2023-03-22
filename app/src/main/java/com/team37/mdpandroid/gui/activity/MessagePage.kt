@@ -22,27 +22,22 @@ class MessagePage: BasicActivity() {
     var messageReceived: TextView? = null
     var clearButton: Button? = null
     var sendButton: Button? = null
-    var homeButton: Button? = null
 
-    companion object{
-
-    }
+//    companion object{
+//
+//    }
 
     private val handler = Handler(
         Looper.myLooper()!!
     ) { msg ->
         when (msg.what) {
-            ConfigUtil.MESSAGE_STATE_CHANGED -> when (msg.arg1) {
-//                BtConnector.STATE_NONE -> textBtConnState.setText("Not connected")
-//                BtConnector.STATE_LISTEN -> textBtConnState.setText("Not connected")
-//                BtConnector.STATE_CONNECTING -> textBtConnState.setText("Connecting")
-//                BtConnector.STATE_CONNECTED -> textBtConnState.setText("Connected to " + mBtConnector.getDeviceName())
-            }
+//            ConfigUtil.MESSAGE_STATE_CHANGED -> when (msg.arg1) {
+//            }
             ConfigUtil.MESSAGE_READ -> {
                 Log.e("Message", msg.data.getString(ConfigUtil.MESSAGE_BODY)!!)
                 messageReceived!!.text = msg.data.getString(ConfigUtil.MESSAGE_BODY)
             }
-            ConfigUtil.MESSAGE_WRITE -> {}
+//            ConfigUtil.MESSAGE_WRITE -> {}
 //            ConfigUtil.MESSAGE_TOAST -> showToast(msg.data.getString(TOAST))
         }
         false
@@ -62,7 +57,6 @@ class MessagePage: BasicActivity() {
         sendButton = findViewById(R.id.sendButton)
         messageToSend = findViewById(R.id.messageToSend)
         messageReceived = findViewById(R.id.messageToReceive)
-        homeButton = findViewById((R.id.homeButton))
 
         clearButton!!.setOnClickListener{
             messageToSend!!.text.clear()
@@ -75,14 +69,6 @@ class MessagePage: BasicActivity() {
             messageToSend!!.text.clear()
         }
 
-
-        homeButton!!.setOnClickListener{
-            if (!currentPage.equals(ConfigUtil.MAIN_PAGE)){
-                val intent = Intent(applicationContext, MainPage::class.java)
-                finish()
-                //startActivity(intent)
-            }
-        }
 
     }
 

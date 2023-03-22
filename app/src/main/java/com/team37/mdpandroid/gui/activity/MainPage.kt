@@ -1,13 +1,20 @@
 package com.team37.mdpandroid.gui.activity
 
+import android.Manifest
 import android.animation.ObjectAnimator
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.speech.RecognitionListener
+import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -15,25 +22,22 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.team37.mdpandroid.R
-import com.team37.mdpandroid.bt.BtConnector
-import com.team37.mdpandroid.bt.BtMessages
 import com.team37.mdpandroid.gui.data.GridElement
-import com.team37.mdpandroid.gui.data.Robot
 import com.team37.mdpandroid.gui.manager.GridAdapter
 import com.team37.mdpandroid.gui.manager.ObstacleAdapter
 import com.team37.mdpandroid.gui.util.ConfigUtil
 import com.team37.mdpandroid.gui.util.JSONBuilder
 import com.team37.mdpandroid.gui.util.ObstacleStatusUtil
-import org.json.JSONObject
-import java.util.concurrent.TimeUnit
+import java.util.*
 
 
 class MainPage : BasicActivity() {
-    private var robot: Robot? = null
     private var gridView: GridView? = null
     private var adapter: GridAdapter? = null
     private var obstacleRecyclerView: RecyclerView? = null
@@ -49,7 +53,8 @@ class MainPage : BasicActivity() {
     private var addObstacle: Button? = null
     private var clearObstacle: Button? = null
     private var blueToothConnection: Button? = null
-    private var robotView: View? = null
+    private var x_Input: EditText?=null
+    private var y_Input: EditText?=null
 
     private var finalPosition = ""
     private var flButton: ImageView? = null
@@ -58,11 +63,17 @@ class MainPage : BasicActivity() {
     private var blButton: ImageView? = null
     private var bcButton: ImageView? = null
     private var brButton: ImageView? = null
-    private var testArenaButton: Button? = null
+//    private var testArenaButton: Button? = null
     private var sendMessage: Button? = null
+    private var cancelButton: Button? = null
+    private var continueButton: Button? = null
+    private var cancelClearButton: Button? = null
+    private var yesButton: Button? = null
+    private var speechButton: Button? = null
+    private var speechRecognizer: SpeechRecognizer? = null
 
     private var started = false
-    /*private var canvasFigure= CanvasFigureDraw(this)*/
+    /*private var canvasFigure= CanvasFigureDraw(this)*///
 
 
     private val obstaclesQueue = mutableListOf<GridAdapter.ViewHolder>()
@@ -71,6 +82,7 @@ class MainPage : BasicActivity() {
     companion object {
         private val TAG = MainPage.javaClass.simpleName
         private var algoPath = mutableListOf<String>()
+        const val RecordAudioRequestCode = 1
     }
 
     private val handler = Handler(
@@ -106,24 +118,6 @@ class MainPage : BasicActivity() {
                         holder!!.image!!.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                         holder!!.image!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                     }
-//                    "MSG" -> {
-//                        when (msgData[1]) {
-//                            "READY" -> {
-//                                statusText!!.text = "Ready"
-//                                statusText!!.setTextColor(Color.GREEN)
-//                            }
-//                            "FINDING" -> {
-//                                val oId = msgData[2]
-//                                statusText!!.text = "Moving to obstacle " + oId
-//                                statusText!!.setTextColor(Color.BLUE)
-//                            }
-//                            "IDENTIFYING" -> {
-//                                val oId = msgData[2]
-//                                statusText!!.text = "Scanning obstacle " + oId
-//                                statusText!!.setTextColor(Color.MAGENTA)
-//                            }
-//                        }
-//                    }
                     "ROBOT" -> {
                         val x: Int = ((Integer.parseInt(arrOfmsg[1])-2) * 33 + 68).toInt()
                         var y: Int = (655 - (Integer.parseInt(arrOfmsg[2])-2) * 33).toInt()
@@ -170,75 +164,6 @@ class MainPage : BasicActivity() {
                             }
                         }
                     }
-//                    "POS" -> {
-//                        algoPath.clear()
-//                        val obstaclePaths = (msgData["body"] as String).split("\n")
-//                        var tempPath = ""
-//                        for (paths: String in obstaclePaths) {
-//                            if (paths.equals(""))
-//                                continue
-//                            val route = paths.split("],[")
-//                            tempPath = ""
-//                            for (path: String in route) {
-//                                tempPath = path
-//                                var position = tempPath.indexOf("[")
-//                                if (position != -1) {
-//                                    tempPath = tempPath.substring(1, tempPath.length)
-//                                }
-//                                position = tempPath.indexOf("]")
-//                                if (position != -1) {
-//                                    tempPath = tempPath.substring(0, tempPath.length - 1)
-//                                }
-//                                algoPath.add(tempPath)
-//                            }
-//                            val position = tempPath.split(",")
-//                            findObstacleId(
-//                                Integer.parseInt(position[0]),
-//                                Integer.parseInt(position[1]),
-//                                position[2]
-//                            )
-//                        }
-//                        finalPosition = tempPath
-//                        algoPath.removeAt(0)
-//                        combineStraightLine()
-//                        statusText!!.text =
-//                            "Moving to position (" + (Integer.parseInt(algoPath[0].split(",")[0]) + 1).toString() + "," + (Integer.parseInt(
-//                                algoPath[0].split(",")[1]
-//                            ) + 1).toString() + ")"
-//                        statusText!!.setTextColor(Color.BLUE)
-//                    }
-//                    "IMAGE_ID" -> {
-//                        val imageId = msgData["body"] as String
-//                        val holder = obstaclesQueue[0]
-//                        if (!imageId.contains("No Detection")) {
-//                            Log.e("ImageDetected", "Image detected")
-//                            holder!!.image!!.text = imageId
-//                            holder!!.image!!.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-//                            holder!!.image!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-//                        }
-//                        obstaclesQueue.removeAt(0)
-//                        if (obstaclesQueue.size == 0) {
-//                            Log.e("Path", finalPosition)
-//                            val info = finalPosition.split(",")
-//                            val x: Int = ((Integer.parseInt(info[0]) - 1) * 33 + 68).toInt()
-//                            var y: Int = (655 - (Integer.parseInt(info[1]) - 1) * 33).toInt()
-//                            val lp = robotLayout!!.getLayoutParams() as RelativeLayout.LayoutParams
-//                            lp.leftMargin = x
-//                            lp.topMargin = y
-//                            robotLayout!!.layoutParams = lp
-//                            when (info[2]) {
-//                                "N" -> robotIcon!!.setImageResource(R.drawable.robot_up)
-//                                "E" -> robotIcon!!.setImageResource(R.drawable.robot_right)
-//                                "S" -> robotIcon!!.setImageResource(R.drawable.robot_down)
-//                                "W" -> robotIcon!!.setImageResource(R.drawable.robot_left)
-//                                else -> {}
-//                            }
-//                            statusText!!.text = "Complete!"
-//                            statusText!!.setTextColor(Color.GREEN)
-//                            start!!.text = "START"
-//                            started = false
-//                        }
-//                    }
                 }
             }
             ConfigUtil.MESSAGE_WRITE -> {}
@@ -261,15 +186,98 @@ class MainPage : BasicActivity() {
         currentPage = ConfigUtil.MAIN_PAGE
         initView()
         initBlueTooth()
-//        initFloatingButtons(this)
-        val lp = robotLayout!!.getLayoutParams() as RelativeLayout.LayoutParams
-        lp.leftMargin = 68
-        lp.topMargin = 655
-        robotLayout!!.layoutParams = lp
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)!= PackageManager.PERMISSION_GRANTED){
+            checkPermissions()
+        }
+        speechButton = findViewById(R.id.speechButton)
+        statusText = findViewById(R.id.status)
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
+        val speechRecognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        speechRecognizer!!.setRecognitionListener(object : RecognitionListener{
+            override fun onReadyForSpeech(p0: Bundle?) {
+            }
 
+            override fun onBeginningOfSpeech() {
+                statusText!!.setText("")
+                statusText!!.setHint("Listening...")
+            }
 
+            override fun onRmsChanged(p0: Float) {}
+
+            override fun onBufferReceived(p0: ByteArray?) {}
+
+            override fun onEndOfSpeech() {}
+
+            override fun onError(p0: Int) {}
+
+            override fun onResults(bundle: Bundle?) {
+                speechButton!!.setText("Speech")
+                val data = bundle!!.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                if (data!![0]=="move forward"){
+                    moveForward("N")
+                }
+                if (data!![0]=="move forward left"){
+                    moveForward("N")
+                    rotate(0f,90f)
+                    moveForward("E")
+                }
+                statusText!!.setText(data!![0])
+
+            }
+
+            override fun onPartialResults(p0: Bundle?) {
+            }
+
+            override fun onEvent(p0: Int, p1: Bundle?) {
+            }
+
+        }
+
+        )
+        speechButton!!.setOnTouchListener{view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_UP){
+                speechRecognizer!!.stopListening()
+                speechButton!!.setText("Speech")
+            }
+
+            if (motionEvent.action == MotionEvent.ACTION_DOWN){
+                speechButton!!.setText("Stop")
+                speechRecognizer!!.startListening(
+                    speechRecognizerIntent
+                )
+            }
+
+        false}
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        speechRecognizer!!.destroy()
+    }
+
+    private fun checkPermissions() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            ActivityCompat.requestPermissions(
+                this,arrayOf(Manifest.permission.RECORD_AUDIO),
+                RecordAudioRequestCode
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == RecordAudioRequestCode && grantResults.isNotEmpty()){
+            Toast.makeText(this,"Permission Granted", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     fun moveForward(direction:String) {
         if (direction == "N") {
             val objectAnimator1 = ObjectAnimator.ofFloat(robotLayout, "translationY", robotLayout!!.translationY,robotLayout!!.translationY-35f)
@@ -291,6 +299,31 @@ class MainPage : BasicActivity() {
             objectAnimator4.duration = 1000
             objectAnimator4.start()
         }
+
+    }
+
+    fun moveBackward(direction:String){
+        if (direction=="N"){
+            val objectAnimator4 = ObjectAnimator.ofFloat(robotLayout, "translationY", robotLayout!!.translationY,robotLayout!!.translationY+35f)
+            objectAnimator4.duration = 1000
+            objectAnimator4.start()
+        }
+        if (direction=="E"){
+            val objectAnimator2=  ObjectAnimator.ofFloat(robotLayout, "translationX", robotLayout!!.translationX,robotLayout!!.translationX-35f)
+            objectAnimator2.duration = 1000
+            objectAnimator2.start()
+        }
+        if (direction=="W"){
+            val objectAnimator3=  ObjectAnimator.ofFloat(robotLayout, "translationX",  robotLayout!!.translationX,robotLayout!!.translationX+35f)
+            objectAnimator3.duration = 1000
+            objectAnimator3.start()
+        }
+        if (direction=="S"){
+            val objectAnimator4 = ObjectAnimator.ofFloat(robotLayout, "translationY", robotLayout!!.translationY,robotLayout!!.translationY-35f)
+            objectAnimator4.duration = 1000
+            objectAnimator4.start()
+        }
+
     }
 
     fun rotate(degree:Float,angle: Float){
@@ -321,7 +354,7 @@ class MainPage : BasicActivity() {
         addObstacle = findViewById(R.id.addArena)
         clearObstacle = findViewById(R.id.clearButton)
         blueToothConnection = findViewById(R.id.blueToothConnection)
-        testArenaButton = findViewById(R.id.testArena)
+        /*testArenaButton = findViewById(R.id.testArena)*/
         sendMessage = findViewById((R.id.sendAndReceive))
         val gridList = mutableListOf<GridElement>()
         for (i in 1..20) {
@@ -331,11 +364,8 @@ class MainPage : BasicActivity() {
         }
         adapter = GridAdapter(this, gridList)
         gridView?.adapter = adapter
-        initGridView()
+//        initGridView()
         initRecyclerView()
-//        listButton!!.setOnClickListener {
-//            drawerLayout!!.openDrawer(Gravity.RIGHT)
-//        }
 
         flButton = findViewById(R.id.flButton)
         frButton = findViewById(R.id.frButton)
@@ -403,12 +433,6 @@ class MainPage : BasicActivity() {
         fcButton!!.setOnClickListener {
             if (checkBtStatus()) {
                 btConnector!!.write(
-                    /*JSONBuilder.refreshJson()
-                        .addParameter("to", "STM")
-                        .addParameter("header", "TEST_MOVEMENT")
-                        .addParameter("body", "[FC,10000]")
-                        .getJsonObject()
-                        .toString()*/
                     "f"
                 )
                 statusText!!.setText("Going Forward")
@@ -466,8 +490,7 @@ class MainPage : BasicActivity() {
             if (checkBtStatus()) {
                 statusText!!.setText("Going Backward")
                 btConnector!!.write("b")
-                direction="S"
-                moveForward(direction)
+                moveBackward(direction)
             }
         }
 
@@ -479,11 +502,6 @@ class MainPage : BasicActivity() {
             }
         }
 
-//        val steeringButton = findViewById<Button>(R.id.steeringButton)
-//        steeringButton.setOnClickListener {
-//            val intent = Intent(this, SteeringPage::class.java)
-//            startActivity(intent)
-//        }
 
 
         drawerLayout!!.setOnDragListener { view, event ->
@@ -505,26 +523,7 @@ class MainPage : BasicActivity() {
         }
 
         addObstacle!!.setOnClickListener {
-            val factory = LayoutInflater.from(this)
-            val view: RelativeLayout =
-                factory.inflate(R.layout.input_dialog, null) as RelativeLayout
-            val xInput = view.findViewById<EditText>(R.id.xInput)
-            setEditTextRange(xInput, 0, 20)
-            val yInput = view.findViewById<EditText>(R.id.yInput)
-            setEditTextRange(yInput, 0, 20)
-            val dialog: AlertDialog.Builder = AlertDialog.Builder(this)
-                .setTitle("Please input obstacle location")
-                .setView(view)
-                .setPositiveButton("Continue", DialogInterface.OnClickListener { dialog, i ->
-                    val index =
-                        Integer.parseInt(xInput.text.toString()) + Integer.parseInt(yInput.text.toString()) * 20
-                    adapter!!.addObstacle(adapter!!.holders[index]!!)
-                })
-                .setNegativeButton("Cancel",
-                    DialogInterface.OnClickListener { dialog, i ->
-                        dialog.dismiss()
-                    })
-            dialog.show()
+            showCustomDialog()
 
         }
 
@@ -590,29 +589,9 @@ class MainPage : BasicActivity() {
         }
 
         clearObstacle!!.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage("Are you sure to clear all obstacles?")
-                .setPositiveButton("Yes") { _, _ ->
-                    var holder: GridAdapter.ViewHolder? = null
-                    for (index: Int in GridAdapter.obstacles.keys) {
-                        holder = GridAdapter.obstacles[index]
-                        GridAdapter!!.clearObstacle(holder!!)
-                    }
-                    GridAdapter.obstacles = mutableMapOf<Int, GridAdapter.ViewHolder>()
-                }
-                .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
-            val dialog = builder.create()
-            dialog.show()
+            clearObstacleDialog()
         }
 
-        testArenaButton!!.setOnClickListener {
-            adapter!!.addObstacleWithDirection(adapter!!.holders[382]!!, ObstacleStatusUtil.down)
-            adapter!!.addObstacleWithDirection(adapter!!.holders[267]!!, ObstacleStatusUtil.up)
-            adapter!!.addObstacleWithDirection(adapter!!.holders[171]!!, ObstacleStatusUtil.right)
-            adapter!!.addObstacleWithDirection(adapter!!.holders[356]!!, ObstacleStatusUtil.left)
-            adapter!!.addObstacleWithDirection(adapter!!.holders[220]!!, ObstacleStatusUtil.left)
-            adapter!!.addObstacleWithDirection(adapter!!.holders[74]!!, ObstacleStatusUtil.right)
-        }
     }
 
     private fun setEditTextRange(editText: EditText, min: Int, max: Int) {
@@ -645,78 +624,54 @@ class MainPage : BasicActivity() {
         obstacleRecyclerView!!.adapter = obstacleAdapter
     }
 
-    private fun initGridView(): Unit {
-//        val mainPageMenu = findViewById<FloatingActionsMenu>(R.id.mainPageMenu)
-//        val test = findViewById<TextView>(R.id.test)
-//        test.setOnLongClickListener{
-//            val builder = View.DragShadowBuilder(it)
-//            it.startDragAndDrop(null, builder, it, 0)
-//            true
-//        }
-        val gridView = findViewById<GridView>(R.id.gridView)
+    private fun showCustomDialog(){
+        val builder = AlertDialog.Builder(this)
+        val customView= LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
+        builder.setView(customView)
+        val dialog=builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val xInput = customView.findViewById<EditText>(R.id.xInput)
+        setEditTextRange(xInput, 0, 20)
+        val yInput = customView.findViewById<EditText>(R.id.yInput)
+        setEditTextRange(yInput, 0, 20)
+        val continueButton=customView.findViewById<Button>(R.id.continueButton)
+        val cancelButton=customView.findViewById<Button>(R.id.cancelButton)
+        continueButton.setOnClickListener {
+            val index =
+                Integer.parseInt(xInput.text.toString()) + Integer.parseInt(yInput.text.toString()) * 20
+            adapter!!.addObstacle(adapter!!.holders[index]!!)
+            dialog.dismiss()
+        }
+        cancelButton.setOnClickListener{
+            dialog.dismiss()
+        }
 
+        dialog.show()
     }
 
-    private fun findItemInGridView(x: Int, y: Int) {
-        var item: GridElement? = null
-        for (i in 1..14) {
-            for (j in 1..14) {
-//                item = gridView.get()
-            }
-        }
-    }
+    private fun clearObstacleDialog(){
+        val builder = AlertDialog.Builder(this)
+        val customView= LayoutInflater.from(this).inflate(R.layout.clear_obstacle_dialog,null)
+        builder.setView(customView)
+        val dialog=builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val yesButton=customView.findViewById<Button>(R.id.yesButton)
+        val cancelClearButton=customView.findViewById<Button>(R.id.cancelClearButton)
+        yesButton.setOnClickListener {
+            var holder: GridAdapter.ViewHolder? = null
+            for (index: Int in GridAdapter.obstacles.keys) {
+                holder = GridAdapter.obstacles[index]
+                GridAdapter!!.clearObstacle(holder!!)
+                    }
+            GridAdapter.obstacles = mutableMapOf<Int, GridAdapter.ViewHolder>()
+            dialog.dismiss()}
 
-    private fun findObstacleId(x: Int, y: Int, direction: String) {
-        var targetPosition: List<Int>? = null
-        targetPosition = when (direction) {
-            "N" -> listOf(x, y + 5)
-            "E" -> listOf(x + 5, y)
-            "S" -> listOf(x, y - 5)
-            "W" -> listOf(x - 5, y)
-            else -> listOf<Int>()
+        cancelClearButton.setOnClickListener{
+            dialog.dismiss()
         }
-        Log.e("???", targetPosition.toString())
-        for (holder: GridAdapter.ViewHolder in GridAdapter.obstacles.values) {
-            if (holder.x == targetPosition[0] + 1 && holder.y == targetPosition[1] + 1) {
-                Log.e("Obstacles", targetPosition[0].toString() + ", " + targetPosition[1])
-                obstaclesQueue.add(holder)
-                break
-            }
-        }
-    }
 
-    private fun combineStraightLine() {
-        var j = 0;
-        var isIncrease = true
-        var isFollowingIncrease = true
-        val size = algoPath.size
-        var isJustTurn = false
-        for (i in 0..size - 2) {
-            Log.e("PATH", algoPath[j])
-            isFollowingIncrease =
-                (Integer.parseInt(algoPath[j + 1].split(",")[1]) - Integer.parseInt(
-                    algoPath[j].split(",")[1]
-                )) + (Integer.parseInt(algoPath[j + 1].split(",")[0]) - Integer.parseInt(
-                    algoPath[j].split(
-                        ","
-                    )[0]
-                )) >= 0
-            if (isJustTurn) {
-                isIncrease = isFollowingIncrease
-                isJustTurn = false
-                j++
-                continue
-            }
-            if (algoPath[j].split(",")[2].equals(algoPath[j + 1].split(",")[2]) && isFollowingIncrease == isIncrease) {
-                algoPath.removeAt(j)
-            } else {
-                if (!algoPath[j].split(",")[2].equals(algoPath[j + 1].split(",")[2])) {
-                    isJustTurn = true
-                }
-                j++
-            }
-            isIncrease = isFollowingIncrease
-        }
+        dialog.show()
+
     }
 
     private fun initBlueTooth(){

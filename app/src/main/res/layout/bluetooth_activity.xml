@@ -5,7 +5,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF">
+    android:background="#DBDCF8">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,23 +16,18 @@
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:background="@color/purple_700">
+            android:background="@drawable/top_background">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="BlueTooth"
-                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textColor="#474FE4"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/mainPageButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="#16FFFFFF"
-                android:foreground="@drawable/home" />
 
 
         </RelativeLayout>
@@ -74,6 +69,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_semibold"
                             android:text="Bluetooth"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
@@ -95,6 +91,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
                             android:text="DeviceName"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
@@ -121,6 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="Paired Devices"
                         android:textColor="@color/grey"
                         android:textSize="15sp"
@@ -146,6 +144,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
+                            android:fontFamily="@font/poppins_semibold"
                             android:text="Available Devices"
                             android:textColor="@color/grey"
                             android:textSize="15sp"
@@ -157,6 +156,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="20dp"
+                            android:fontFamily="@font/poppins_semibold"
                             android:text="Refresh"
                             android:textColor="@color/grey"
                             android:textSize="15sp"

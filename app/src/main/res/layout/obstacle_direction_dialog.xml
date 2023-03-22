@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_button"
+    android:clipToPadding="false"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Please select obstacle direction"
+        android:textAlignment="center"
+        android:textColor="#474FE4"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:translationY="10dp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/upButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Up"
+            android:textColor="#474FE4"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/downButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Down"
+            android:textColor="#474FE4"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/leftButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Left"
+            android:textColor="#474FE4"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rightButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Right"
+            android:textColor="#474FE4"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

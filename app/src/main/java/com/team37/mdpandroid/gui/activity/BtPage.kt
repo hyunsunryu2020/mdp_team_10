@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,9 +18,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import android.util.TypedValue
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.rahatarmanahmed.cpv.CircularProgressView
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.suke.widget.SwitchButton
 import com.team37.mdpandroid.R
 import com.team37.mdpandroid.bt.BtConnector
@@ -27,15 +31,14 @@ import com.team37.mdpandroid.bt.BtManager
 import com.team37.mdpandroid.bt.BtManager.getBTMajorDeviceClass
 import com.team37.mdpandroid.gui.data.BtDevice
 import com.team37.mdpandroid.gui.util.ConfigUtil
+import java.security.AccessController.getContext
 
 class BtPage : BasicActivity() {
 
     private var switchButton: SwitchButton? = null
     private var deviceName: TextView? = null
     private var refresh: TextView? = null
-    var mainPageButton: Button? = null
     private var refreshProgress: CircularProgressView? = null
-
     private var pairedDevices = mutableListOf<BtDevice>()
     private val availableDevices = mutableListOf<BtDevice>()
 
@@ -43,6 +46,7 @@ class BtPage : BasicActivity() {
     private var availableDeviceView: RecyclerView? = null
 
     private var isChecked = false
+
 
     private val handler = Handler(
         Looper.myLooper()!!
@@ -120,16 +124,9 @@ class BtPage : BasicActivity() {
     private fun initView(){
         switchButton = findViewById(R.id.switchButton)
         deviceName = findViewById(R.id.deviceName)
-        mainPageButton = findViewById(R.id.mainPageButton)
         switchButton!!.isChecked = btManager!!.isBluetoothEnabled
         isChecked = switchButton!!.isChecked
 
-        mainPageButton!!.setOnClickListener{
-            if (!currentPage.equals(ConfigUtil.MAIN_PAGE)){
-                val intent = Intent(applicationContext, MainPage::class.java)
-                finish()
-                //startActivity(intent)
-            }}
 
         switchButton!!.setOnClickListener{
             if (isChecked) {
@@ -210,7 +207,6 @@ class BtPage : BasicActivity() {
         var connectionStatus: TextView? = null
         var string: TextView? = null
         var device: BtDevice? = null
-
         init{
             deviceTypeImage = itemView.findViewById(R.id.deviceType)
             deviceName = itemView.findViewById(R.id.deviceName)
@@ -270,6 +266,7 @@ class BtPage : BasicActivity() {
             val device = deviceList[position]
             holder.device = device
             holder.deviceName!!.text = device.name
+
             if (!device.paired){
                 holder.connectionPoint!!.visibility = View.GONE
                 holder.connectionStatus!!.visibility = View.GONE
